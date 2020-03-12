@@ -1,0 +1,2 @@
+# ChoreTracker
+Aineopintojen harjoitustyö: Tietokantasovellus
