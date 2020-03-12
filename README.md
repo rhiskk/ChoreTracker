@@ -7,4 +7,4 @@ Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten askareista
 
 ## Dokumentaatio
 
-[Tietokantakaavio](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/Tietokantakaavio.png)
+[Tietokantakaavio](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/Database_diagram.png)
