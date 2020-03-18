@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ChoreTracker</title>
+  </head>
+
+  <body>
+    <ul>
+      <li><a href="{{ url_for('chores_index') }}">List chores</a></li>
+      <li><a href="{{ url_for('chores_form') }}">Add a chore</a></li>
+    </ul>
+    {% block body %}
+      <p>
+        Content.
+      </p>
+    {% endblock %}
+  </body>
+</html>

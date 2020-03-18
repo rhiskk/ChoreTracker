@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('chores_create') }}">
+  name: <input name="name" type="text" name="name"/>
+  points: <input name="points" type="int" name="points"/>
+  <input type="submit" value="Add a new chore"/>
+</form>
+{% endblock %}
