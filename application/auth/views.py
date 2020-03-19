@@ -12,7 +12,7 @@ def auth_register():
 
     form = RegistrationForm(request.form)
 
-    if not form.validate:
+    if not form.validate():
         return render_template("/auth/registrationform.html", form=form)
 
     u = User(form.name.data, form.username.data, form.password.data)
