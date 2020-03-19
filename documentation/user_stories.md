@@ -12,4 +12,4 @@
 
 * **As a user** i want to **be able to register** so that i can **have my own account.**
 
-* **As a student living in a shared flat** i want my roommates to **see how much housework i am doing** so that **they can realize they need to step up their game**.
+* **As a student living in a shared flat** i want my roommates to **see how much housework i am doing** so that they can **realize they need to step up their game**.
