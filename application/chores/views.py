@@ -7,7 +7,7 @@ from application.chores.forms import ChangePointsForm
 
 @app.route("/chores", methods=["GET"])
 def chores_index():
-    return render_template("chores/list.html", chores=Chore.query.all(), form=ChoreForm())
+    return render_template("chores/list.html", chores=Chore.query.all(), form=ChangePointsForm())
 
 
 @app.route("/chores/new/")
