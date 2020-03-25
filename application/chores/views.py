@@ -1,5 +1,6 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required, current_user
 from application.chores.models import Chore
 from application.chores.forms import ChoreForm
 from application.chores.forms import ChangePointsForm
@@ -11,12 +12,27 @@ def chores_index():
 
 
 @app.route("/chores/new/")
+@login_required
 def chores_form():
     return render_template("chores/new.html", form=ChoreForm())
 
 
 @app.route("/chores/<chore_id>/", methods=["POST"])
+@login_required
 def chores_change_points(chore_id):
+
+    form = ChangePointsForm(request.form)
+    if not form.validate():
+        return render_template("chores/list.html", chores=Chore.query.all(), form=form)
+    c = Chore.query.get(chore_id)
+    c.points = form.points.data
+    db.session().commit()
+
+    return redirect(url_for("chores_index"))
+
+@app.route("/chores/<chore_id>/", methods=["POST"])
+@login_required
+def chores_edit(chore_id):
 
     form = ChangePointsForm(request.form)
     if not form.validate():
@@ -29,6 +45,7 @@ def chores_change_points(chore_id):
 
 
 @app.route("/chores/", methods=["POST"])
+@login_required
 def chores_create():
     form = ChoreForm(request.form)
 
