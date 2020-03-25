@@ -2,39 +2,54 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('chores_edit', chore_id=chore_id) }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.name.label }}
-      </td>
-      <td>
-        {{ form.name }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.name.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      <td>
-        {{ form.points.label }}
-      </td>
-      <td>
-        {{ form.points }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.points.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Edit chore" />
-      </td>
-    </tr>
+    <table>
+        <tr>
+            <td>Current name: </td>
+            <td>{{ chore.name }}</td>
+            <td></td>
+            <td>Current points: </td>
+            <td>{{ chore.points }}</td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.name.label }}:
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                {{ form.points.label }}:
+            </td>
+            <td>
+                {{ form.points }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.points.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Edit chore" />
+            </td>
+        </tr>
 </form>
+<tr>
+    <form method="GET" action="{{ url_for('chores_index') }}">
+        <td colspan="2">
+            <input type="submit" value="Back" />
+        </td>
+    </form>
+</tr>
+
 {% endblock %}
