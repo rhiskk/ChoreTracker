@@ -10,39 +10,30 @@ from application.chores.forms import ChangePointsForm
 def chores_index():
     return render_template("chores/list.html", chores=Chore.query.all(), form=ChangePointsForm())
 
-
 @app.route("/chores/new/")
 @login_required
 def chores_form():
     return render_template("chores/new.html", form=ChoreForm())
 
-
-@app.route("/chores/<chore_id>/", methods=["POST"])
+@app.route("/chores/edit/<int:chore_id>")
 @login_required
-def chores_change_points(chore_id):
+def chores_edit_form(chore_id):
+    return render_template("chores/edit.html", chore_id=chore_id, form=ChoreForm())
 
-    form = ChangePointsForm(request.form)
-    if not form.validate():
-        return render_template("chores/list.html", chores=Chore.query.all(), form=form)
-    c = Chore.query.get(chore_id)
-    c.points = form.points.data
-    db.session().commit()
-
-    return redirect(url_for("chores_index"))
-
-@app.route("/chores/<chore_id>/", methods=["POST"])
+@app.route("/chores/<int:chore_id>", methods=["POST"])
 @login_required
 def chores_edit(chore_id):
+    form = ChoreForm(request.form)
 
-    form = ChangePointsForm(request.form)
     if not form.validate():
-        return render_template("chores/list.html", chores=Chore.query.all(), form=form)
+        return render_template("chores/edit.html", chore_id=chore_id, form=form)
+
     c = Chore.query.get(chore_id)
+    c.name = form.name.data
     c.points = form.points.data
     db.session().commit()
 
     return redirect(url_for("chores_index"))
-
 
 @app.route("/chores/", methods=["POST"])
 @login_required
