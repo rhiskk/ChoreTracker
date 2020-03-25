@@ -37,11 +37,13 @@ def chores_edit(chore_id):
 
     return redirect(url_for("chores_index"))
 
-@app.route("/chores/<int:chore_id>", methods=["POST"])
+@app.route("/chores/delete/<int:chore_id>", methods=["POST"])
 @login_required
 def chores_delete(chore_id):
 
     c = Chore.query.get(chore_id)
+    Instance.query.filter_by(chore_id = chore_id).delete()
+    db.session.delete(c)
     db.session().commit()
 
     return redirect(url_for("chores_index"))

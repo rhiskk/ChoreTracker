@@ -45,6 +45,13 @@
         </tr>
 </form>
 <tr>
+    <form method="POST" action="{{ url_for('chores_delete', chore_id=chore_id) }}">
+        <td colspan="2">
+            <input type="submit" value="Delete" /> Deletes chore and all the instances related to it!
+        </td>
+    </form>
+</tr>
+<tr>
     <form method="GET" action="{{ url_for('chores_index') }}">
         <td colspan="2">
             <input type="submit" value="Back" />
