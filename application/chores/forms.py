@@ -7,9 +7,3 @@ class ChoreForm(FlaskForm):
  
     class Meta:
         csrf = False
-
-class ChangePointsForm(FlaskForm):
-    points = IntegerField("Chore points")
- 
-    class Meta:
-        csrf = False
