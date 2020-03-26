@@ -20,7 +20,7 @@ def chores_form():
 @app.route("/chores/edit/<int:chore_id>/")
 @login_required
 def chores_edit_form(chore_id):
-    return render_template("chores/edit.html", chore_id=chore_id, chore = Chore.query.get(chore_id), form=ChoreForm())
+    return render_template("chores/edit.html", chore = Chore.query.get(chore_id), form=ChoreForm())
 
 
 @app.route("/chores/<int:chore_id>/", methods=["POST"])
@@ -30,7 +30,7 @@ def chores_edit(chore_id):
     form = ChoreForm(request.form)
 
     if not form.validate():
-        return render_template("chores/edit.html", chore_id=chore_id, chore = Chore.query.get(chore_id), form=form)
+        return render_template("chores/edit.html", chore = c, form=form)
     c.name = form.name.data
     c.points = form.points.data
     db.session().commit()

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('chores_edit', chore_id=chore_id) }}">
+<form method="POST" action="{{ url_for('chores_edit', chore_id=chore.id) }}">
     <table>
         <tr>
             <td>Current name: </td>
@@ -45,7 +45,7 @@
         </tr>
 </form>
 <tr>
-    <form method="POST" action="{{ url_for('chores_delete', chore_id=chore_id) }}">
+    <form method="POST" action="{{ url_for('chores_delete', chore_id=chore.id) }}">
         <td colspan="2">
             <input type="submit" value="Delete" /> Deletes chore and all the instances related to it!
         </td>

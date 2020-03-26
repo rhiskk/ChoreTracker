@@ -13,3 +13,10 @@ Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten askareista
 
 ## Linkki Herokuun
 [ChoreTracker](http://tsoha-choretracker.herokuapp.com)
+
+Testikäyttäjä
+
+Käyttäjänimi | Salasana
+------------ | --------
+user | user
+
