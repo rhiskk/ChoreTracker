@@ -6,7 +6,7 @@ from application.instances.models import Instance
 from application.chores.forms import ChoreForm
 
 
-@app.route("/chores", methods=["GET"])
+@app.route("/chores/", methods=["GET"])
 def chores_index():
     return render_template("chores/list.html", chores=Chore.query.all())
 
@@ -17,13 +17,13 @@ def chores_form():
     return render_template("chores/new.html", form=ChoreForm())
 
 
-@app.route("/chores/edit/<int:chore_id>")
+@app.route("/chores/edit/<int:chore_id>/")
 @login_required
 def chores_edit_form(chore_id):
     return render_template("chores/edit.html", chore_id=chore_id, chore = Chore.query.get(chore_id), form=ChoreForm())
 
 
-@app.route("/chores/<int:chore_id>", methods=["POST"])
+@app.route("/chores/<int:chore_id>/", methods=["POST"])
 @login_required
 def chores_edit(chore_id):
     c = Chore.query.get(chore_id)
@@ -37,7 +37,7 @@ def chores_edit(chore_id):
 
     return redirect(url_for("chores_index"))
 
-@app.route("/chores/delete/<int:chore_id>", methods=["POST"])
+@app.route("/chores/delete/<int:chore_id>/", methods=["POST"])
 @login_required
 def chores_delete(chore_id):
 
