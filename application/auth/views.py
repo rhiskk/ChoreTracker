@@ -17,7 +17,11 @@ def auth_register():
 
     u = User(form.name.data, form.username.data, form.password.data)
     db.session().add(u)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        return render_template("/auth/registrationform.html", form=form,
+                                 error="Username is already taken!")
 
     return render_template("auth/loginform.html", form=LoginForm())
 

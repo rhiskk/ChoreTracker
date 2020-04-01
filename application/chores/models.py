@@ -1,11 +1,8 @@
 from application import db
+from application.models import Base
 
-class Chore(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
-
+class Chore(Base):
+    
     name = db.Column(db.String(144), nullable=False)
     points = db.Column(db.Integer, nullable=False)
 

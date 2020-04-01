@@ -16,7 +16,8 @@
         </tr>
         <tr>
             <td>{{ form.username.label }}</td>
-            <td>{{ form.username }}</td>
+            <td>{{ form.username }}</td> 
+            <td> {{ error }}</td> 
             <td>
                 <ul>
                     {% for error in form.username.errors %}
