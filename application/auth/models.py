@@ -9,6 +9,7 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False, unique=True)
     password = db.Column(db.String(144), nullable=False)
     instances = db.relationship("Instance", backref='account', lazy=True)
+    created_groups = db.relationship("Group", backref='group', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
