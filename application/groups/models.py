@@ -5,7 +5,6 @@ from sqlalchemy.sql import text
 
 ##Association table
 userGroup = db.Table('usergroup',
-    db.Column('id', db.Integer, primary_key=True),
     db.Column('user_id', db.Integer, db.ForeignKey('account.id')),
     db.Column('group_id', db.Integer, db.ForeignKey('gang.id'))
 )
