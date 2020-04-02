@@ -31,7 +31,7 @@ class User(Base):
         return True
 
     def count_user_total_points(groupId):
-        stmt = text('SELECT DISTINCT ON(Chore.group_id) Account.username, SUM(Chore.points) FROM Account'
+        stmt = text('SELECT Account.username, SUM(Chore.points) FROM Account'
                     ' LEFT JOIN Instance ON Instance.account_id = Account.id'
                     ' LEFT JOIN Chore ON Chore.id = Instance.chore_id'
                     ' GROUP BY Account.id, Chore.id HAVING Chore.group_id = :groupId'
