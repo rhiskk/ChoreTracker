@@ -34,7 +34,7 @@ class User(Base):
         stmt = text('SELECT DISTINCT ON(Chore.group_id) Account.username, SUM(Chore.points) FROM Account'
                     ' LEFT JOIN Instance ON Instance.account_id = Account.id'
                     ' LEFT JOIN Chore ON Chore.id = Instance.chore_id'
-                    ' GROUP BY Account.id HAVING Chore.group_id = :groupId'
+                    ' GROUP BY Account.id, Chore.id HAVING Chore.group_id = :groupId'
                     ).params(groupId=groupId)
         res = db.engine.execute(stmt)
 
