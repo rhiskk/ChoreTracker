@@ -23,7 +23,8 @@ def auth_register():
         return render_template("/auth/registrationform.html", form=form,
                                  error="Username is already taken!")
 
-    return render_template("auth/loginform.html", form=LoginForm())
+    return render_template("auth/loginform.html", form=LoginForm(),
+                                 message="account '" + u.username + "' created!")
 
 
 @app.route("/auth/login", methods=["GET", "POST"])

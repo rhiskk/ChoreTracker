@@ -11,17 +11,16 @@ def chores_index():
     return render_template("chores/list.html", chores=Chore.query.all())
 
 
-@app.route("/chores/new/")
+@app.route("/chores/new/<int:group_id>")
 @login_required
-def chores_form():
-    return render_template("chores/new.html", form=ChoreForm())
+def chores_form(group_id):
+    return render_template("chores/new.html", form=ChoreForm(), group_id=group_id)
 
 
 @app.route("/chores/edit/<int:chore_id>/")
 @login_required
 def chores_edit_form(chore_id):
     return render_template("chores/edit.html", chore = Chore.query.get(chore_id), form=ChoreForm())
-
 
 @app.route("/chores/<int:chore_id>/", methods=["POST"])
 @login_required
@@ -35,7 +34,7 @@ def chores_edit(chore_id):
     c.points = form.points.data
     db.session().commit()
 
-    return redirect(url_for("chores_index"))
+    return redirect(url_for("groups_view", group_id=c.group_id))
 
 @app.route("/chores/delete/<int:chore_id>/", methods=["POST"])
 @login_required
@@ -49,17 +48,17 @@ def chores_delete(chore_id):
     return redirect(url_for("chores_index"))
 
 
-@app.route("/chores/", methods=["POST"])
+@app.route("/chores/group/<int:group_id>", methods=["POST"])
 @login_required
-def chores_create():
+def chores_create(group_id):
     form = ChoreForm(request.form)
 
     if not form.validate():
-        return render_template("chores/new.html", form=form)
+        return render_template("chores/new.html", form=form, group_id = group_id)
 
-    c = Chore(form.name.data, form.points.data)
+    c = Chore(form.name.data, form.points.data, group_id)
 
     db.session().add(c)
     db.session().commit()
 
-    return redirect(url_for("chores_index"))
+    return redirect(url_for("groups_view", group_id=group_id))

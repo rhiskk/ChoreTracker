@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>Group: {{ group.name }}</th>
+    <th>Creator: {{ creator.username }}</th>
+  </tr>
+  <tr>
+    <th>Chore</th>
+    <th>Points</th>
+  </tr>
+  {% for chore in group.chores %}
+  <tr>
+    <td>{{ chore.name }}</td>
+    <td>{{ chore.points }}</td>
+    </td>
+    <form method="POST" action="{{ url_for('instances_create', chore_id=chore.id) }}">
+      <td colspan="2">
+        <input type="submit" value="Mark done!" />
+      </td>
+    </form>
+
+    <form action="{{ url_for('chores_edit_form', chore_id=chore.id) }}">
+      <td colspan="2">
+        <input type="submit" value="Edit" />
+      </td>
+    </form>
+    </td>
+  </tr>
+  {% endfor %}
+
+  <form action="{{ url_for('chores_form', group_id=group.id) }}">
+    <td colspan="2">
+      <input type="submit" value="Add a chore" />
+    </td>
+  </form>
+</table>
+<p>total points per user:</p>
+{% for user in userPoints %}
+<p>{{ user.username }} {{ user.points }}</p>
+{% endfor %}
+{% endblock %}

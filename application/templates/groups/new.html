@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('chores_create', group_id=group_id) }}">
+<form method="POST" action="{{ url_for('groups_create') }}">
   <table>
     <tr>
       <td>
@@ -17,23 +17,10 @@
           {% endfor %}
         </ul>
       </td>
-      <td>
-        {{ form.points.label }}: 
-      </td>
-      <td>
-        {{ form.points }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.points.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Add a new chore" />
+        <input type="submit" value="Create a new group" />
       </td>
     </tr>
 </form>

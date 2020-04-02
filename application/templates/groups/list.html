@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>Group</th>
+    <th>Creator</th>
+  </tr>
+  {% for group in groups %}
+  <tr>
+    <td>{{ group.name }}</td>
+    <td>{{ group.creatorname }}</td>
+    <form action="{{ url_for('groups_view', group_id=group.id) }}">
+      <td colspan="2">
+        <input type="submit" value="View" />
+      </td>
+    </form>
+    <form action="{{ url_for('groups_join', group_id=group.id) }}">
+      <td colspan="2">
+        <input type="submit" value="Join" />
+      </td>
+    </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
