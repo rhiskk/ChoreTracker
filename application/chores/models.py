@@ -8,7 +8,7 @@ class Chore(Base):
     points = db.Column(db.Integer, nullable=False)
 
     instances = db.relationship("Instance", backref='chore', lazy=True)
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'), nullable=False)
+    group_id = db.Column(db.Integer, db.ForeignKey('gang.id'), nullable=False)
 
     def __init__(self, name, points, groupId):
         self.name = name
