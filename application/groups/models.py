@@ -6,13 +6,15 @@ from sqlalchemy.sql import text
 ##Association table
 userGroup = db.Table('userGroup',
     db.Column('user_id', db.Integer, db.ForeignKey('account.id')),
-    db.Column('group_id', db.Integer, db.ForeignKey('group.id'))
+    db.Column('group_id', db.Integer, db.ForeignKey('gang.id'))
 )
 
 class Group(Base):
 
+    __tablename__ = 'gang'
+
     name = db.Column(db.String(144), nullable=False)
-    chores = db.relationship('Chore', backref='group', lazy=True)
+    chores = db.relationship('Chore', backref='gang', lazy=True)
     members = db.relationship('User', secondary=userGroup, backref=db.backref('groups', lazy=True))
     creator_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
@@ -22,8 +24,8 @@ class Group(Base):
 
     @staticmethod
     def find_creator_usernames():
-        stmt = text('SELECT "Group".name, "Group".id, Account.username FROM Account, "Group"'
-                    'WHERE "Group".creator_id = Account.id')
+        stmt = text('SELECT Gang.name, Gang.id, Account.username FROM Account, Gang'
+                    'WHERE Gang.creator_id = Account.id')
         res = db.engine.execute(stmt)
 
         response = []
