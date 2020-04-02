@@ -4,7 +4,7 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 ##Association table
-userGroup = db.Table('userGroup',
+userGroup = db.Table('usergroup',
     db.Column('user_id', db.Integer, db.ForeignKey('account.id')),
     db.Column('group_id', db.Integer, db.ForeignKey('gang.id'))
 )
