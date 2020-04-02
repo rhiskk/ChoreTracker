@@ -26,7 +26,7 @@ class Group(Base):
     @staticmethod
     def find_creator_usernames():
         stmt = text('SELECT Gang.name, Gang.id, Account.username FROM Account, Gang'
-                    'WHERE Gang.creator_id = Account.id')
+                    ' WHERE Gang.creator_id = Account.id')
         res = db.engine.execute(stmt)
 
         response = []
