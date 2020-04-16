@@ -45,7 +45,7 @@ def chores_delete(chore_id):
     db.session.delete(c)
     db.session().commit()
 
-    return redirect(url_for("chores_index"))
+    return redirect(url_for("groups_view", group_id=c.group_id))
 
 
 @app.route("/chores/group/<int:group_id>", methods=["POST"])

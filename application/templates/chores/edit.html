@@ -2,61 +2,30 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('chores_edit', chore_id=chore.id) }}">
-    <table>
-        <tr>
-            <td>Current name: </td>
-            <td>{{ chore.name }}</td>
-            <td></td>
-            <td>Current points: </td>
-            <td>{{ chore.points }}</td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.name.label }}:
-            </td>
-            <td>
-                {{ form.name }}
-            </td>
-            <td>
-                <ul>
-                    {% for error in form.name.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-            <td>
-                {{ form.points.label }}:
-            </td>
-            <td>
-                {{ form.points }}
-            </td>
-            <td>
-                <ul>
-                    {% for error in form.points.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Edit chore" />
-            </td>
-        </tr>
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name (class="form-control", placeholder=chore.name) }}
+        <ul>
+            {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="form-group">
+        {{ form.points.label }}
+        {{ form.points (class="form-control", placeholder=chore.points) }}
+        <ul>
+            {% for error in form.points.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <input type="submit" value="Edit" class="btn btn-secondary btn-block" style="margin: 5px 0px 0px 0px;" />
 </form>
-<tr>
-    <form method="POST" action="{{ url_for('chores_delete', chore_id=chore.id) }}">
-        <td colspan="2">
-            <input type="submit" value="Delete" /> Deletes chore and all the instances related to it!
-        </td>
-    </form>
-</tr>
-<tr>
-    <form method="GET" action="{{ url_for('chores_index') }}">
-        <td colspan="2">
-            <input type="submit" value="Back" />
-        </td>
-    </form>
-</tr>
+
+<form method="POST" action="{{ url_for('chores_delete', chore_id=chore.id) }}">
+    <input type="submit" value="Delete" class="btn btn-danger btn-block" style="margin: 5px 0px 0px 0px;" />
+</form>
+
 
 {% endblock %}
