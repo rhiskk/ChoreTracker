@@ -12,11 +12,13 @@ class User(Base):
     password = db.Column(db.String(144), nullable=False)
     instances = db.relationship('Instance', backref='account', lazy=True)
     created_groups = db.relationship('Group', backref='account', lazy=True)
+    role = db.Column(db.String(144), nullable=False)
 
-    def __init__(self, name, username, password):
+    def __init__(self, name, username, password, role):
         self.name = name
         self.username = username
         self.password = password
+        self.role = role
   
     def get_id(self):
         return self.id
@@ -29,6 +31,9 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        return self.role
 
     def count_user_total_points(groupId):
         stmt = text('SELECT Account.username, SUM(Chore.points) FROM Account'

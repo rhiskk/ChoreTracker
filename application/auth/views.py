@@ -15,7 +15,11 @@ def auth_register():
     if not form.validate():
         return render_template("/auth/registrationform.html", form=form)
 
-    u = User(form.name.data, form.username.data, form.password.data)
+    role = "USER"
+    if form.username.data == "admin":
+        role = "ADMIN"
+    
+    u = User(form.name.data, form.username.data, form.password.data, role)
     db.session().add(u)
     try:
         db.session().commit()
