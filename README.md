@@ -11,6 +11,8 @@ Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten askareista
 
 [User storyt](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/user_stories.md)
 
+[Asennusohje](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/asennusohje.md)
+
 ## Linkki Herokuun
 [ChoreTracker](http://tsoha-choretracker.herokuapp.com)
 
