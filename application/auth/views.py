@@ -45,11 +45,14 @@ def auth_login():
     if not user:
         return render_template("auth/loginform.html", form=form,
                                error="No such username or password")
-
-    if not bcrypt.check_password_hash(user.password, form.password.data):
-        return render_template("auth/loginform.html", form=form,
+    try:
+        if not bcrypt.check_password_hash(user.password, form.password.data):
+            return render_template("auth/loginform.html", form=form,
                                error="No such username or password")
-
+    except:
+        return render_template("auth/loginform.html", form=form,
+                               error="You need to hash your password with bcrypt before inserting " 
+                               "if you create an user in SQL")
     login_user(user)
     return redirect(url_for("index"))
 
