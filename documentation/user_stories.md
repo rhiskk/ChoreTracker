@@ -34,21 +34,17 @@
 
 * Askareen muokkaaminen `UPDATE Chore SET date_modified = CURRENT_TIMESTAMP, name = ?, points = ? WHERE id = ?;`
 
-* Askareen poistaminen 
-<pre>
-BEGIN;
+* Askareen poistaminen
+`BEGIN;
   DELETE FROM Chore WHERE id = ?;
   DELETE FROM Instance WHERE chore_id = ?;
-COMMIT;
-</pre>
+COMMIT;`
 
 * Ryhmien listaus `SELECT Gang.name, Gang.id, Account.username FROM Account, Gang WHERE Gang.creator_id = Account.id;`
 
 * Ryhmän jäsenten kokonaispisteiden näyttäminen
-<pre>
-SELECT Account.username, SUM(Chore.points) FROM Account
+`SELECT Account.username, SUM(Chore.points) FROM Account
     LEFT JOIN Instance ON Instance.account_id = Account.id
     LEFT JOIN Chore ON Chore.id = Instance.chore_id
     WHERE Chore.group_id = :groupId
-    ROUP BY Account.id
-</pre>
+    ROUP BY Account.id`
