@@ -11,6 +11,8 @@ Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten askareista
 
 [User storyt](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/user_stories.md)
 
+[Jatkokehitysideoita](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/jatkokehitysidat.md)
+
 [Asennusohje](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/asennusohje.md)
 
 [Käyttöohje](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/kayttoohje.md)
