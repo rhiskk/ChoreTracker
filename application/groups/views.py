@@ -9,6 +9,16 @@ from application.auth.models import User
 def groups_index():
     return render_template("groups/list.html", groups=Group.find_creator_usernames())
 
+@app.route("/usersgroups/", methods=["GET"])
+@login_required
+def users_groups():
+    return render_template("groups/list.html", groups=Group.find_users_groups(current_user.id), users=True)
+
+@app.route("/nonusersgroups/", methods=["GET"])
+@login_required
+def non_users_groups():
+    return render_template("groups/list.html", groups=Group.find_non_users_groups(current_user.id))
+
 @app.route("/groups/new/")
 @login_required
 def groups_form():
@@ -46,4 +56,4 @@ def groups_create():
     g.members.append(current_user)
     db.session().commit()
 
-    return redirect(url_for("groups_index"))
+    return redirect(url_for("users_groups"))
