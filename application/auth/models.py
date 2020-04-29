@@ -42,7 +42,7 @@ class User(Base):
                     ' AND Gang.id = :groupId) Account'
                     ' LEFT JOIN Instance ON Account.id = Instance.account_id'
                     ' LEFT JOIN (SELECT id, points FROM Chore WHERE group_id = :groupId) Chore ON'
-                    ' Instance.chore_id = Chore.id GROUP BY Account.id;'
+                    ' Instance.chore_id = Chore.id GROUP BY Account.username;'
                     ).params(groupId=groupId)
         res = db.engine.execute(stmt)
 
