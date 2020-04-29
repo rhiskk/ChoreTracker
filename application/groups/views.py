@@ -38,7 +38,10 @@ def groups_join(group_id):
 def groups_view(group_id):
     g = Group.query.get(group_id)
     c = User.query.get(g.creator_id)
-    return render_template("groups/view.html", group=g, creator=c,
+    authorized = False
+    if c.id == current_user.id or current_user.role == "ADMIN":
+        authorized = True
+    return render_template("groups/view.html", group=g, creator=c, authorized=authorized,
                              userPoints=User.count_user_total_points(group_id))
 
 @app.route("/groups/", methods=["POST"])
