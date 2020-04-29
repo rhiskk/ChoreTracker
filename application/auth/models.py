@@ -36,11 +36,12 @@ class User(Base):
         return self.role
 
     def count_user_total_points(groupId):
-        stmt = text('SELECT Account.username, SUM(Chore.points) FROM Account'
-                    ' LEFT JOIN Instance ON Instance.account_id = Account.id'
-                    ' LEFT JOIN Chore ON Chore.id = Instance.chore_id'
-                    ' WHERE Chore.group_id = :groupId'
-                    ' GROUP BY Account.id'
+        stmt = text('SELECT Account.username, COALESCE(SUM(Chore.points), 0) FROM Account'
+                    ' LEFT JOIN Usergroup ug ON ug.user_id = account.id'
+                    ' LEFT JOIN Gang ON ug.group_id = Gang.id'
+                    ' LEFT JOIN Instance ON Account.id = Instance.account_id'
+                    ' LEFT JOIN Chore ON Instance.chore_id = Chore.id'
+                    ' WHERE Gang.id = :groupId GROUP BY Account.id;'
                     ).params(groupId=groupId)
         res = db.engine.execute(stmt)
 
