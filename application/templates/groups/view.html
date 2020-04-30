@@ -40,7 +40,7 @@
   </div>
   {% endfor %}
   {% else %}
-  <h3 >No chores</h3>
+  <h3>No chores</h3>
   {% endif %}
 </div>
 <div class="jumbotron bg-light">
@@ -58,6 +58,9 @@
   {% endfor %}
 </div>
 {% if authorized %}
+<form action="{{ url_for('groups_edit_form', group_id=group.id) }}">
+  <input type="submit" value="Edit group name" class="btn btn-primary btn-block" style="margin: 0px 0px 5px 0px;" />
+</form>
 <!-- Delete confirmation -->
 <button class="btn btn-danger btn-block" onclick="document.getElementById('confirm').style.display='block' ">Delete
   group</button>

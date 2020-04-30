@@ -64,6 +64,35 @@ def groups_delete(group_id):
     db.session().commit()
     return redirect(url_for("users_groups"))
 
+@app.route("/groups/edit/<int:group_id>/")
+@login_required
+def groups_edit_form(group_id):
+    g = Group.query.get(group_id)
+
+    if g.creator_id !=  current_user.id and current_user.role != "ADMIN":
+        return login_manager.unauthorized()
+
+    return render_template("groups/edit.html", group=g, form=GroupForm(), authorized=True)
+
+
+@app.route("/groups/edit/<int:group_id>/", methods=["POST"])
+@login_required
+def groups_edit(group_id):
+    g = Group.query.get(group_id)
+    
+    if g.creator_id !=  current_user.id and current_user.role != "ADMIN":
+        return login_manager.unauthorized()
+
+    form = GroupForm(request.form)
+
+    if not form.validate():
+        return render_template("groups/edit.html", group=g, form=form)
+
+    g.name = form.name.data
+    db.session().commit()
+
+    return redirect(url_for("groups_view", group_id=group_id))
+
 @app.route("/groups/", methods=["POST"])
 @login_required
 def groups_create():

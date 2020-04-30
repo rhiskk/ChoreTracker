@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('groups_edit', group_id=group.id) }}">
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name (class="form-control", value=group.name) }}
+        <ul>
+            {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <input type="submit" value="Edit" class="btn btn-secondary btn-block" style="margin: 5px 0px 0px 0px;" />
+</form>
+
+{% endblock %}
