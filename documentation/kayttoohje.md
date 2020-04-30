@@ -27,5 +27,6 @@ ja suorittamalla tiedosto _run.py_ komennolla `python3 run.py`
   - lisätä ryhmän sisällä uuden askareen painamalla _Add a chore_-painiketta ja syöttämällä sille nimen ja vaativuuspisteet
   - muokata askareen tietoja painamalla askareen vieressä olevaa _Edit_-painiketta
   - poistaa ryhmän painamalla sivun alareunassa olevaa _Delete group_-painiketta
+  - muokata ryhmän nimeä painamalla sivun alareunassa olevaa _Edit group name_-painiketta
 
 - Pääset kirjautumaan ulos painamalla oikeassa yläkulmassa olevaa _Logout_-painiketta
