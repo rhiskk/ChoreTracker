@@ -35,7 +35,7 @@ class User(Base):
     def roles(self):
         return self.role
 
-    def count_user_total_points(groupId):
+    def count_user_group_points(groupId):
         stmt = text('SELECT Account.username, COALESCE(SUM(Chore.points), 0)'
                     ' FROM (SELECT Account.username, Account.id  FROM Usergroup, Account, Gang'
                     ' WHERE Account.id = Usergroup.user_id AND Gang.id = Usergroup.group_id'
@@ -49,5 +49,34 @@ class User(Base):
         response = []
         for row in res:
             response.append({"username":row[0], "points":row[1]})
+        
+        return response
+
+    def count_user_total_points(userId):
+        stmt = text('SELECT COALESCE(SUM(Chore.points), 0) FROM Account'
+                    ' LEFT JOIN Instance ON Instance.account_id = Account.id'
+                    ' LEFT JOIN Chore ON Instance.chore_id = Chore.id'
+                    ' WHERE Account.id = :userId;'
+                    ).params(userId=userId)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"total":row[0]})
+        
+        return response
+
+    def count_user_avg_points_per_group(userId):
+        stmt = text('SELECT AVG(Points.sum) FROM'
+                    ' (SELECT COALESCE(SUM(Chore.points), 0) sum, Chore.group_id FROM Account'
+                    ' LEFT JOIN Instance ON Instance.account_id = Account.id'
+                    ' LEFT JOIN Chore ON Instance.chore_id = Chore.id'
+                    ' WHERE Account.id = :userId GROUP BY Chore.group_id) Points;'
+                    ).params(userId=userId)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"avg":row[0]})
         
         return response

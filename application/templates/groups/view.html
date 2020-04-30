@@ -2,45 +2,44 @@
 
 {% block body %}
 
-<div class="container">
+<div class="jumbotron">
   <div class="row">
-    <div class="col-2">
+    <div class="col-4">
       <h5>Group: {{ group.name }}</h5>
     </div>
-    <div class="col-2">
+    <div class="col-4">
       <h5>Creator: {{ creator.username }}</h5>
     </div>
+    {% if authorized %}
+    <div class="col-2">
+      <form action="{{ url_for('chores_form', group_id=group.id) }}">
+        <input type="submit" value="Add a chore" class="btn btn-primary" style="margin: 5px 0px 20px 0px;" />
+      </form>
+    </div>
+    {% endif %}
   </div>
+  <br>
   <div class="row">
     <div class="col-2">Chore</div>
     <div class="col-2">Points</div>
   </div>
+  <br>
   {% for chore in group.chores %}
   <div class="row">
     <div class="col-2">{{ chore.name }}</div>
     <div class="col-2">{{ chore.points }}</div>
-
     <form method="POST" action="{{ url_for('instances_create', chore_id=chore.id) }}">
-
       <input type="submit" value="Mark done!" class="btn btn-secondary" style="margin: 5px 5px 0px 0px;" />
-
     </form>
     {% if authorized %}
     <form action="{{ url_for('chores_edit_form', chore_id=chore.id) }}">
-      <input type="submit" value="Edit" class="btn btn-secondary" style="margin: 5px 0px 0px 0px;" />
+      <input type="submit" value="Edit" class="btn btn-primary" style="margin: 5px 0px 0px 0px;" />
     </form>
     {% endif %}
   </div>
   {% endfor %}
 </div>
-{% if authorized %}
-<div class="container">
-  <form action="{{ url_for('chores_form', group_id=group.id) }}">
-    <input type="submit" value="Add a chore" class="btn btn-secondary" style="margin: 5px 0px 20px 0px;" />
-  </form>
-</div>
-{% endif %}
-<div class="container">
+<div class="jumbotron bg-light">
   <div class="row">
     <div class="col-4">
       <h5>Total points per user:</h5>

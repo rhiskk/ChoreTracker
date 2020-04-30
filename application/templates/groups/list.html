@@ -6,20 +6,28 @@
     <div class="col-2">
       <h5>Group</h5>
     </div>
-    <div class="col-2">
+    <div class="col-4">
       <h5>Creator</h5>
     </div>
+    {% if total is defined and avg is defined %}
+    <div class="col-6 bg-light">
+      <h5>Your total points: {{ total.total }}</h5>
+      <h5>Your avergae points per group: {{ avg.avg }}</h5>
+    </div>
+    {% else %}
+      <br><br><br>
+    {% endif %}
   </div>
   {% for group in groups %}
   <div class="row">
     <div class="col-2">{{ group.name }} </div>
     <div class="col-2"> {{ group.creatorname }} </div>
-
-    {% if users is defined %}
+    {% if total is defined or role == 'ADMIN' %}
     <form action="{{ url_for('groups_view', group_id=group.id) }}">
       <input type="submit" value="View" class="btn btn-secondary" style="margin: 5px 5px 0px 0px;" />
     </form>
-    {% else %}
+    {% endif %}
+    {% if total is not defined or role == 'ADMIN' %}
     <form action="{{ url_for('groups_join', group_id=group.id) }}">
       <input type="submit" value="Join" class="btn btn-secondary" style="margin: 5px 5px 0px 0px;" />
     </form>
@@ -27,4 +35,5 @@
   </div>
   {% endfor %}
 </div>
+
 {% endblock %}

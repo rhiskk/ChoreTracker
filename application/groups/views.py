@@ -12,12 +12,13 @@ def groups_index():
 @app.route("/usersgroups/", methods=["GET"])
 @login_required
 def users_groups():
-    return render_template("groups/list.html", groups=Group.find_users_groups(current_user.id), users=True)
+    return render_template("groups/list.html", groups=Group.find_users_groups(current_user.id), 
+                total=User.count_user_total_points(current_user.id)[0], avg=User.count_user_avg_points_per_group(current_user.id)[0])
 
 @app.route("/nonusersgroups/", methods=["GET"])
 @login_required
 def non_users_groups():
-    return render_template("groups/list.html", groups=Group.find_non_users_groups(current_user.id))
+    return render_template("groups/list.html", groups=Group.find_non_users_groups(current_user.id), role=current_user.role)
 
 @app.route("/groups/new/")
 @login_required
@@ -42,7 +43,7 @@ def groups_view(group_id):
     if c.id == current_user.id or current_user.role == "ADMIN":
         authorized = True
     return render_template("groups/view.html", group=g, creator=c, authorized=authorized,
-                             userPoints=User.count_user_total_points(group_id))
+                             userPoints=User.count_user_group_points(group_id))
 
 @app.route("/groups/", methods=["POST"])
 @login_required
