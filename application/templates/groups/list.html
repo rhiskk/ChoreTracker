@@ -2,6 +2,7 @@
 
 {% block body %}
 <div class="container">
+  {% if groups|length %}
   <div class="row">
     <div class="col-2">
       <h5>Group</h5>
@@ -16,6 +17,11 @@
     </div>
     {% else %}
     <br><br><br>
+    {% endif %}
+    {% else %}
+    <div class=jumbotron>
+      <h3 class="text-center">No groups</h3>
+    </div>
     {% endif %}
   </div>
   {% for group in groups %}
