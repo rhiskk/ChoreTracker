@@ -2,6 +2,7 @@ from application import app, db
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from application.groups.models import Group
+from application.instances.models import Instance
 from application.groups.forms import GroupForm
 from application.auth.models import User
 
@@ -40,10 +41,28 @@ def groups_view(group_id):
     g = Group.query.get(group_id)
     c = User.query.get(g.creator_id)
     authorized = False
+
     if c.id == current_user.id or current_user.role == "ADMIN":
         authorized = True
+
     return render_template("groups/view.html", group=g, creator=c, authorized=authorized,
                              userPoints=User.count_user_group_points(group_id))
+
+@app.route("/groups/delete/<int:group_id>/", methods=["POST"])
+@login_required
+def groups_delete(group_id):
+
+    g = Group.query.get(group_id)
+
+    if g.creator_id !=  current_user.id and current_user.role != "ADMIN":
+        return login_manager.unauthorized()
+    for chore in g.chores:
+        Instance.query.filter_by(chore_id = chore.id).delete()
+        db.session.delete(chore)
+
+    db.session.delete(g)
+    db.session().commit()
+    return redirect(url_for("users_groups"))
 
 @app.route("/groups/", methods=["POST"])
 @login_required
@@ -54,9 +73,7 @@ def groups_create():
         return render_template("groups/new.html", form=form)
 
     g = Group(form.name.data, current_user.id)
-
     db.session().add(g)
-    
     g.members.append(current_user)
     db.session().commit()
 

@@ -11,14 +11,15 @@
       <h5>Creator: {{ creator.username }}</h5>
     </div>
     {% if authorized %}
-    <div class="col-2">
+    <div class="col-4">
       <form action="{{ url_for('chores_form', group_id=group.id) }}">
-        <input type="submit" value="Add a chore" class="btn btn-primary" style="margin: 5px 0px 20px 0px;" />
+        <input type="submit" value="Add a chore" class="btn btn-primary" />
       </form>
     </div>
     {% endif %}
   </div>
   <br>
+  {% if group.chores|length %}
   <div class="row">
     <div class="col-2">Chore</div>
     <div class="col-2">Points</div>
@@ -38,19 +39,45 @@
     {% endif %}
   </div>
   {% endfor %}
+  {% else %}
+  <h3 >No chores</h3>
+  {% endif %}
 </div>
 <div class="jumbotron bg-light">
   <div class="row">
-    <div class="col-4">
+    <div class="col-6">
       <h5>Total points per user:</h5>
+      <br>
     </div>
   </div>
   {% for user in userPoints %}
   <div class="row">
-    <div class="col-2">{{ user.username }}</div>
-    <div class="col-2">{{ user.points }}</div>
+    <div class="col-3">{{ user.username }}</div>
+    <div class="col-3">{{ user.points }}</div>
   </div>
   {% endfor %}
 </div>
+{% if authorized %}
+<button class="btn btn-danger btn-block" onclick="document.getElementById('confirm').style.display='block' ">Delete
+  group</button>
+<div id="confirm" class="modal">
+  <span onclick="document.getElementById('confirm').style.display='none'" class="close"
+    title="Close Modal">&times;</span>
+  <form class="modal-content" method="POST" action="{{ url_for('groups_delete', group_id=group.id) }}">
+    <div class="container">
+      <h1>Delete group</h1>
+      <p>Are you sure you want to delete group?</p>
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('confirm').style.display='none'"
+          class="btn btn-secondary">Cancel</button>
+        <form>
+          <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+      </div>
+    </div>
+  </form>
+</div>
+{% endif %}
+
 
 {% endblock %}
