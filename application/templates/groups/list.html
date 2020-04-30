@@ -4,10 +4,10 @@
 <div class="container">
   {% if groups|length %}
   <div class="row">
-    <div class="col-2">
+    <div class="col-3">
       <h5>Group</h5>
     </div>
-    <div class="col-4">
+    <div class="col-3">
       <h5>Creator</h5>
     </div>
     {% if total is defined and avg is defined %}
@@ -26,8 +26,8 @@
   </div>
   {% for group in groups %}
   <div class="row">
-    <div class="col-2">{{ group.name }} </div>
-    <div class="col-2"> {{ group.creatorname }} </div>
+    <div class="col-3">{{ group.name }} </div>
+    <div class="col-3"> {{ group.creatorname }} </div>
     {% if total is defined or role == 'ADMIN' %}
     <form action="{{ url_for('groups_view', group_id=group.id) }}">
       <input type="submit" value="View" class="btn btn-secondary" style="margin: 5px 5px 0px 0px;" />
