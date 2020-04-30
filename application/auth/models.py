@@ -67,8 +67,8 @@ class User(Base):
         return response
 
     def count_user_avg_points_per_group(userId):
-        stmt = text('SELECT AVG(Points.sum) FROM'
-                    ' (SELECT COALESCE(SUM(Chore.points), 0) sum, Chore.group_id FROM Account'
+        stmt = text('SELECT ROUND(AVG(Points.sum), 2) FROM'
+                    ' (SELECT (COALESCE(SUM(Chore.points), 0)) sum, Chore.group_id FROM Account'
                     ' LEFT JOIN Instance ON Instance.account_id = Account.id'
                     ' LEFT JOIN Chore ON Instance.chore_id = Chore.id'
                     ' WHERE Account.id = :userId GROUP BY Chore.group_id) Points;'
