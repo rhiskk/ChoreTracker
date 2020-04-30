@@ -2,8 +2,7 @@
 
 ## Aihekuvaus
 
-Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten askareista. Käyttäjät voivat lisätä ja liittyä ryhmiin. Käyttäjät voivat lisätä ryhmälle askareita. Askareilla on nimi ja pistemäärä, joka kuvaa askareen työläyttä. Käyttäjät voivat lisätä tekemiään askareita, jolloin luodaan tapahtuma, johon liitetään jokin askare, lisääjän käyttäjä ja lisäyksen ajanhetki. Kirjatun tiedon avulla voidaan tarkastella mitä askareita kukin ryhmän jäsen tekee milloinkin ja kuinka paljon.
-
+Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten jäsenten tekemien askareiden määrästä. Käyttäjät voivat lisätä ryhmiä ja liittyä niihin. Ryhmän luojat voivat lisätä ryhmälleen askareita. Askareilla on nimi ja pistemäärä, joka kuvaa askareen työläyttä. Käyttäjät voivat lisätä tekemiään askareita, jolloin luodaan tapahtuma, johon liitetään jokin askare, lisääjän käyttäjä ja lisäyksen ajanhetki. Ryhmän sisällä näytetään kuinka paljon kukin ryhmän jäsen on ansainnut pisteitä.
 
 ## Dokumentaatio
 
