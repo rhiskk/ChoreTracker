@@ -13,12 +13,19 @@ ja suorittamalla tiedosto _run.py_ komennolla `python3 run.py`
 
 - Ryhmän lisääminen tapahtuu painamalla vasemmassa yläkulmassa olevaa _Create a new group_-painiketta ja syöttämällä ryhmälle haluttu nimi
 
-- Pääset tarkastelemaan käyttäjien tekemiä ryhmiä painamalla _List groups_-painiketta
+- Pääset tarkastelemaan omia ryhmiäsi painamalla _My groups_-painiketta
 
-- Voit liittyä ryhmään painamalla ryhmän vieressä olevaa _Join_-painiketta tai tarkastella ryhmää _View_-napilla
+- Omia ryhmiäsi tarkastellessa pääset katsomaan ryhmän tietoja painamalla ryhmän vieressä olevaa _View_-painiketta
 
-- Ryhmän sisällä voit lisätä uuden askareen painamalla _Add a chore_-painiketta ja syöttämällä sille nimen ja vaativuuspisteet
+- Pääset tarkastelemaan muita ryhmiä painamalla _List other groups_-painiketta
 
-- Voit merkitä askareen tehdyksi painamalla _Mark done!_-painiketta tai muokata askareen tietoja painamalla _Edit_-painiketta
+- Muita ryhmiä tarkastellessa voit liittyä ryhmään painamalla ryhmän vieressä olevaa _Join_-painiketta
+
+- Yksittäisen ryhmän sivulla voit merkitä askareen tehdyksi painamalla _Mark done!_-painiketta
+
+- Jos olet ryhmän luoja tai sinulla on admin-oikeudet voit
+  - lisätä ryhmän sisällä uuden askareen painamalla _Add a chore_-painiketta ja syöttämällä sille nimen ja vaativuuspisteet
+  - muokata askareen tietoja painamalla askareen vieressä olevaa _Edit_-painiketta
+  - poistaa ryhmän painamalla sivun alareunassa olevaa _Delete group_-painiketta
 
 - Pääset kirjautumaan ulos painamalla oikeassa yläkulmassa olevaa _Logout_-painiketta
