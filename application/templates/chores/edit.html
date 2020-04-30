@@ -4,7 +4,7 @@
 <form method="POST" action="{{ url_for('chores_edit', chore_id=chore.id) }}">
     <div class="form-group">
         {{ form.name.label }}
-        {{ form.name (class="form-control", placeholder=chore.name) }}
+        {{ form.name (class="form-control", value=chore.name) }}
         <ul>
             {% for error in form.name.errors %}
             <li>{{ error }}</li>
@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         {{ form.points.label }}
-        {{ form.points (class="form-control", placeholder=chore.points) }}
+        {{ form.points (class="form-control", value=chore.points) }}
         <ul>
             {% for error in form.points.errors %}
             <li>{{ error }}</li>

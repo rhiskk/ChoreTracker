@@ -6,12 +6,6 @@ from application.instances.models import Instance
 from application.groups.models import Group
 from application.chores.forms import ChoreForm
 
-
-@app.route("/chores/", methods=["GET"])
-def chores_index():
-    return render_template("chores/list.html", chores=Chore.query.all())
-
-
 @app.route("/chores/new/<int:group_id>")
 @login_required
 def chores_form(group_id):
