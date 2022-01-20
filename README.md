@@ -10,7 +10,7 @@ Sovelluksen avulla pidetään kirjaa eri ryhmien, kuten kotitalousten jäsenten 
 
 [User storyt](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/user_stories.md)
 
-[Jatkokehitysideoita](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/jatkokehitysidat.md)
+[Jatkokehitysideoita](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/jatkokehitysideat.md)
 
 [Asennusohje](https://github.com/HiskiR/ChoreTracker/blob/master/documentation/asennusohje.md)
 
